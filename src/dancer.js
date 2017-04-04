@@ -40,7 +40,7 @@ var Dancer = function(top, left, timeBetweenSteps) {
 };
 
 Dancer.prototype.step = function() {
-  setTimeout(this.step.bind(this), this.timeBetweenSteps);
+  this.timeoutID = setTimeout(this.step.bind(this), this.timeBetweenSteps);
 };
 
 Dancer.prototype.setPosition = function(top, left) {
@@ -60,6 +60,12 @@ Dancer.prototype.lineUp = function(left) {
 };
 
 Dancer.prototype.interact = function(side) {
+  var oldInfo = this.$node.offset();
+  oldInfo.height =  this.$node.height();
+  oldInfo.width =  this.$node.width();
+
+  this.$node.fadeIn();
+  clearTimeout(this.timeoutID);
   this.$node.removeClass();
   this.$node.addClass('dancer');
   this.$node.css({'background-color': 'blue'});
@@ -68,15 +74,24 @@ Dancer.prototype.interact = function(side) {
 
   if (side === 'left') {
     styleSettings = {
-      top: 100,
+      top: $('body').height() - 400,
       left: 300,
     };
   } else {
     styleSettings = {
-      top: 100,
-      left: 500,
+      top: $('body').height() - 400,
+      left: 400,
     };
   }
 
-  this.$node.css(styleSettings);  
+  styleSettings.height = "+=300";
+  styleSettings.width = "+=300";
+  this.$node.animate(styleSettings);
+
+  // return to what they were doing
+  setTimeout(() => { 
+    this.$node.css(oldInfo); 
+    setTimeout(() => { this.step(); }, 3000); 
+  }, 5000);
+
 };

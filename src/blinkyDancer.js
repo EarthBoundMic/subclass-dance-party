@@ -30,3 +30,8 @@ BlinkyDancer.prototype.step = function() {
   Dancer.prototype.step.call(this);
   this.$node.toggle();
 };
+
+// BlinkyDancer.prototype.interact = function(arguments) {
+//   this.$node.fadeIn();
+//   Dancer.prototype.interact.call(this, arguments);
+// };

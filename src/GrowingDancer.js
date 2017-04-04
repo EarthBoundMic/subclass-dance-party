@@ -7,5 +7,5 @@ GrowingDancer.prototype.constructor = GrowingDancer;
 
 GrowingDancer.prototype.step = function() {
   Dancer.prototype.step.call(this);
-  this.$node.toggleClass('growing-dancer');
+  setTimeout(() => { this.$node.toggleClass('growing-dancer'); }, 1000);
 };

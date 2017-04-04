@@ -24,7 +24,7 @@ $(document).ready(function() {
     var buffer = 300;
 
     var dancer = new dancerMakerFunction(
-      ($('body').height() - buffer) * Math.random(),
+      ($('body').height() - buffer) * Math.random() + 50,
       ($('body').width() - buffer) * Math.random(),
       Math.max(Math.random() * 5000, 1000)
     );
@@ -40,11 +40,19 @@ $(document).ready(function() {
   });
 
   $('.coupleUpButton').click(function() {
-    var left = window.dancers[3];
-    var right = window.dancers[1];
+    if (window.dancers.length === 0) { return; }
 
-    left.interact('left');
-    right.interact('right');    
+    var leftIndex = randomIndex(window.dancers);
+    var rightIndex = randomIndex(window.dancers);
+    while(leftIndex === rightIndex) {
+      var leftIndex = randomIndex(window.dancers);
+    }
+
+    window.dancers[leftIndex].interact('left');
+    window.dancers[rightIndex].interact('right');
   });
 });
 
+var randomIndex = function(array) {
+  return Math.floor(Math.random() * array.length);
+};
