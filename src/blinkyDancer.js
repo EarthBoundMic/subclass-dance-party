@@ -27,7 +27,9 @@ BlinkyDancer.prototype = Object.create(Dancer.prototype);
 BlinkyDancer.prototype.constructor = BlinkyDancer;
 
 BlinkyDancer.prototype.step = function() {
-  Dancer.prototype.step.call(this);
+  var time = Math.floor((Math.random() * 700)) + 200;
+  Dancer.prototype.step.call(this, time);
+  this.$node.addClass('blinking-dancer');
   this.$node.toggle();
 };
 

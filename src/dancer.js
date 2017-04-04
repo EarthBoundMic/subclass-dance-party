@@ -39,8 +39,9 @@ var Dancer = function(top, left, timeBetweenSteps) {
   this.setPosition(top, left);
 };
 
-Dancer.prototype.step = function() {
-  this.timeoutID = setTimeout(this.step.bind(this), this.timeBetweenSteps);
+Dancer.prototype.step = function(time) {
+  time = time || this.timeBetweenSteps;
+  this.timeoutID = setTimeout(this.step.bind(this), time);
 };
 
 Dancer.prototype.setPosition = function(top, left) {
@@ -61,7 +62,6 @@ Dancer.prototype.lineUp = function(left) {
 
 Dancer.prototype.interact = function(side) {
   var oldInfo = this.$node.offset();
-  oldInfo['background-color'] = this.$node.css('background-color');
   oldInfo['z-index'] = 'auto';
 
   this.$node.fadeIn();
