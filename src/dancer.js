@@ -61,14 +61,13 @@ Dancer.prototype.lineUp = function(left) {
 
 Dancer.prototype.interact = function(side) {
   var oldInfo = this.$node.offset();
-  oldInfo.height =  this.$node.height();
-  oldInfo.width =  this.$node.width();
+  oldInfo['background-color'] = this.$node.css('background-color');
+  oldInfo['z-index'] = 'auto';
 
   this.$node.fadeIn();
   clearTimeout(this.timeoutID);
   this.$node.removeClass();
-  this.$node.addClass('dancer');
-  this.$node.css({'background-color': 'blue'});
+  this.$node.addClass('dancer couple');
 
   var styleSettings;
 
@@ -84,12 +83,11 @@ Dancer.prototype.interact = function(side) {
     };
   }
 
-  styleSettings.height = "+=300";
-  styleSettings.width = "+=300";
   this.$node.animate(styleSettings);
 
   // return to what they were doing
   setTimeout(() => { 
+    this.$node.removeClass('couple');
     this.$node.css(oldInfo); 
     setTimeout(() => { this.step(); }, 3000); 
   }, 5000);
