@@ -43,8 +43,8 @@ $(document).ready(function() {
     var left = window.dancers[3];
     var right = window.dancers[1];
 
-    left.interact(left);
-    right.interact(right);    
+    left.interact('left');
+    right.interact('right');    
   });
 });
 
