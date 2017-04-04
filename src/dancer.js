@@ -53,8 +53,30 @@ Dancer.prototype.setPosition = function(top, left) {
 
 Dancer.prototype.lineUp = function(left) {
   var styleSettings = {
-    top: $('body').height() / 2,
+    top: $('body').height() / 3,
     left: left
   };
+  this.$node.css(styleSettings);  
+};
+
+Dancer.prototype.interact = function(side) {
+  this.$node.removeClass();
+  this.$node.addClass('dancer');
+  this.$node.css({'background-color': 'blue'});
+
+  var styleSettings;
+
+  if (side === 'left') {
+    styleSettings = {
+      top: 100,
+      left: 300,
+    };
+  } else {
+    styleSettings = {
+      top: 100,
+      left: 500,
+    };
+  }
+
   this.$node.css(styleSettings);  
 };

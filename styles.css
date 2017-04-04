@@ -6,6 +6,7 @@ body{
   margin: 0px;
   background-color:#444;
   font-size: 18px;
+  background-image: url(dance-floor.jpg);
 }
 
 body, a:link, a:visited, a:active{
@@ -29,23 +30,32 @@ body, a:link, a:visited, a:active{
 }
 
 .dancer{
-  border:10px solid red;
-  border-radius:10px;
+  transition: all 3s;
   position:absolute;
-  transition: all 2s;
+  background-color: olivedrab;
+  -webkit-mask:  url(dancer.svg);
+  mask: url(dancer.svg);
+  width: 200px;
+  height: 200px;
 }
 
 .blinking-dancer {
-  border-color: green;
+ background-color: aqua;
+}
+
+.dancer:hover, .blinking-dancer:hover, 
+.moving-dancer:hover, .growing-dancer:hover {
+  transition: all 0.5s;
+  background-color: lightcoral;
+  transform: rotate(360deg);
 }
 
 .moving-dancer {
-  border:20px dotted yellow;
-  border-radius: 20px;
-  background-color: red;
+  background-color: orchid;
 }
 
 .growing-dancer {
-  border:50px solid blue;
-  border-radius:50px;
+  background-color: goldenrod;
+  width: 400px;
+  height: 400px;
 }

@@ -21,12 +21,12 @@ $(document).ready(function() {
     var dancerMakerFunction = window[dancerMakerFunctionName];
 
     // make a dancer with a random position
-    var buffer = 100;
+    var buffer = 300;
 
     var dancer = new dancerMakerFunction(
-      ($('body').height() - buffer) * Math.random() + buffer / 2,
-      ($('body').width() - buffer) * Math.random() + buffer / 2,
-      Math.random() * 1000
+      ($('body').height() - buffer) * Math.random(),
+      ($('body').width() - buffer) * Math.random(),
+      Math.max(Math.random() * 5000, 1000)
     );
 
     window.dancers.push(dancer);
@@ -34,10 +34,17 @@ $(document).ready(function() {
   });
 
   $('.lineUpButton').click(function() {
-    debugger;
     window.dancers.forEach(function(dancer) {
       dancer.lineUp();
     });
+  });
+
+  $('.coupleUpButton').click(function() {
+    var left = window.dancers[3];
+    var right = window.dancers[1];
+
+    left.interact(left);
+    right.interact(right);    
   });
 });
 
