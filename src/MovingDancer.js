@@ -16,5 +16,5 @@ MovingDancer.prototype.step = function() {
   var styleSettings = {
     left: location.left + move
   };
-  this.$node.css(styleSettings);  
+  this.$node.css(styleSettings);
 };

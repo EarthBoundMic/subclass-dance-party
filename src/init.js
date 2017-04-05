@@ -44,7 +44,7 @@ $(document).ready(function() {
 
     var leftIndex = randomIndex(window.dancers);
     var rightIndex = randomIndex(window.dancers);
-    while(leftIndex === rightIndex) {
+    while (leftIndex === rightIndex) {
       var leftIndex = randomIndex(window.dancers);
     }
 
